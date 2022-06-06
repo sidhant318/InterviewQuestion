@@ -1,4 +1,4 @@
-package LinkedList;
+package Recursion;
 
 public class ReverseLS {
 	
@@ -21,24 +21,26 @@ public class ReverseLS {
 		linkedList.add(3);
 		linkedList.add(4);
 		linkedList.add(5);
-		linkedList.print();
-		System.out.println();
+		//linkedList.print();
+		//System.out.println();
 		linkedList.reverse();
 		linkedList.print();
 		
 	}
 	
-	
 	private void reverse() {
-		Node current=head;
-		Node next=null,prev=null;
-		while(current!=null) {
-			next=current.next;
-			current.next=prev;
-			prev=current;
-			current=next;
-		}
-		head=prev;
+		head=reverse(head);
+	}
+
+	private Node reverse(Node tmp) {
+		if(tmp==null)
+			return tmp;
+		if(tmp.next==null)
+			return tmp;
+		Node n=reverse(tmp.next);
+		tmp.next.next = tmp;
+		tmp.next = null;
+		return n;
 	}
 
 	private void print() {
